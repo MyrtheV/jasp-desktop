@@ -92,7 +92,6 @@ Rectangle
 
 			onClicked		:
 			{
-
 				if (fileMenuModel.visible)	fileMenuModel.visible = false
 				if (modulesMenu.opened)		modulesMenu.opened  = false
 
@@ -100,14 +99,18 @@ Rectangle
 					ribbonModel.analysisClickedSignal(ribbonButton.menu.getFirstAnalysisEntry(), ribbonButton.ribbonTitle, ribbonButton.moduleName)
 				else
 				{
-					customMenu.functionCall = function menuItemClicked(index)
+					var functionCall      = function menuItemClicked(index)
 					{
-						var analysis = customMenu.model.getFunctionName(index);
+						var analysis = customMenu.props['model'].getFunctionName(index);
 						ribbonModel.analysisClickedSignal(analysis, ribbonButton.ribbonTitle, ribbonButton.moduleName)
 						customMenu.visible = false;
 					}
+					var props             = {};
+					props['model']        = ribbonButton.menu;
+					props['type']         = "analysisMenu";
+					props['functionCall'] = functionCall;
 
-					customMenu.showMenu(ribbonButton, "analysesMenu", ribbonButton.menu, ribbonButton.width / 2, ribbonButton.height);
+					customMenu.showMenu(ribbonButton, props, ribbonButton.width / 2, ribbonButton.height);
 				}
 			}
 		}

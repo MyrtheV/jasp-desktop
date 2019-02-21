@@ -169,7 +169,7 @@ FocusScope
 						{
 							// if(columnIndex > -1)
 							// 	popupLoader.open()
-							customMenu.functionCall = function menuItemClicked(index)
+							var functionCall      = function (index)
 							{
 								// FIXME:
 								var columnType = [columnTypeScale, columnTypeOrdinal, columnTypeNominal][index];
@@ -178,8 +178,12 @@ FocusScope
 									colIcon.setColumnType(columnType);
 								customMenu.visible = false;
 							}
+							var props             = {};
+							props['model']        = columnTypeModel;
+							props['type']         = "columnVarMenu";
+							props['functionCall'] = functionCall
 
-							customMenu.showMenu(colIcon, "columnVarMenu", columnTypeModel, colIcon.width / 2, colIcon.height);
+							customMenu.showMenu(colIcon, props, colIcon.width / 2, colIcon.height);
 						}
 
 						hoverEnabled:		true

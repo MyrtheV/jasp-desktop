@@ -147,20 +147,19 @@ OLD.SplitView
 
 				function showAnalysesMenu(options)
 				{
-					console.log(options)
-
-					options                 = JSON.parse(options);
-					customMenu.options      = options;
-					customMenu.functionCall = function menuItemClicked(index)
+					options               = JSON.parse(options);
+					var functionCall      = function (index)
 					{
-						resultsJsInterface.runJavaScript(customMenu.model.get(index).jsFunction);
+						resultsJsInterface.runJavaScript(customMenu.props['model'].get(index).jsFunction);
 						customMenu.visible = false;
 					}
-					// var tester = {};
-					// tester['model'] = resultsMenuOptionsModel
-					// tester['type']  = "resultsMenu"
+					var props             = {};
+					props['model']        = resultsMenuOptionsModel;
+					props['type']         = "resultsMenu";
+					props['options']      = options;
+					props['functionCall'] = functionCall;
 
-					customMenu.showMenu(resultsView, "resultsMenu", resultsMenuOptionsModel, options['rXright'] + 10, options['rY']);
+					customMenu.showMenu(resultsView, props, options['rXright'] + 10, options['rY']);
 				}
 
 				function updateUserData(id, key)				{ resultsJsInterface.updateUserData(id, key)				}

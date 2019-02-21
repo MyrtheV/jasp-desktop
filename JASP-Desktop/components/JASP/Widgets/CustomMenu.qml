@@ -23,12 +23,8 @@ import JASP.Theme 1.0
 
 Item
 {
-	id							: menu
-	property var model			: undefined
-	property var functionCall	: undefined
-	property var type			: undefined
-	property var options		: undefined
-	property var tester			: undefined
+	id					: menu
+	property var props	: undefined
 
 	function resizeElements(newWidth)
 	{
@@ -55,7 +51,7 @@ Item
 		Repeater
 		{
 			id		: repeater
-			model	: menu.model
+			model	: menu.props['model']
 
 			onItemAdded:
 			{
@@ -80,10 +76,10 @@ Item
 					if (displayText === "???")
 						return menuSeparator
 
-					if (menu.type === "resultsMenu")
+					if (menu.props['type'] === "resultsMenu")
 					{
 						console.log(displayText)
-						if (!menu.options[name])
+						if (!menu.props['options'][name])
 							return undefined
 					}
 
@@ -141,7 +137,7 @@ Item
 							id				: mouseArea
 							hoverEnabled	: true
 							anchors.fill	: parent
-							onClicked:		functionCall(index)
+							onClicked		: menu.props['functionCall'](index)
 						}
 					}
 				}
