@@ -22,6 +22,13 @@ ListModel
 {
 	ListElement
 	{
+		displayText		: "Edit Title"
+		name			: "hasEditTitle"
+		menuImageSource	: ""
+		jsFunction		: "window.editTitleMenuClicked();"
+	}
+	ListElement
+	{
 		displayText		: "Copy"
 		name			: "hasCopy"
 		menuImageSource	: "qrc:/icons/copy.png"
@@ -59,6 +66,27 @@ ListModel
 	{
 		displayText		: "Add Note"
 		name			: "hasNotes"
+		menuImageSource	: ""
+		jsFunction		: ""
+	}
+	ListElement
+	{
+		displayText		: "Remove"
+		name			: "hasRemove"
+		menuImageSource	: ""
+		jsFunction		: "window.removeMenuClicked();"
+	}
+	ListElement
+	{
+		displayText		: "Remove All"
+		name			: "hasRemoveAllAnalyses"
+		menuImageSource	: ""
+		jsFunction		: ""
+	}
+	ListElement
+	{
+		displayText		: "Refresh All"
+		name			: "hasRefreshAllAnalyses"
 		menuImageSource	: ""
 		jsFunction		: ""
 	}
