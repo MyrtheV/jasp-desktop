@@ -169,7 +169,6 @@ FocusScope
 						{
 							// if(columnIndex > -1)
 							// 	popupLoader.open()
-
 							customMenu.functionCall = function menuItemClicked(index)
 							{
 								// FIXME:
@@ -180,7 +179,7 @@ FocusScope
 								customMenu.visible = false;
 							}
 
-							customMenu.showMenu(colIcon, columnTypeModel, colIcon.width / 2, colIcon.height);
+							customMenu.showMenu(colIcon, "columnVarMenu", columnTypeModel, colIcon.width / 2, colIcon.height);
 						}
 
 						hoverEnabled:		true

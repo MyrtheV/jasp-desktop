@@ -26,6 +26,9 @@ Item
 	id							: menu
 	property var model			: undefined
 	property var functionCall	: undefined
+	property var type			: undefined
+	property var options		: undefined
+	property var tester			: undefined
 
 	function resizeElements(newWidth)
 	{
@@ -72,7 +75,20 @@ Item
 
 			delegate: Loader
 			{
-				sourceComponent	: displayText === "???" ? menuSeparator : menuDelegate
+				sourceComponent :
+				{
+					if (displayText === "???")
+						return menuSeparator
+
+					if (menu.type === "resultsMenu")
+					{
+						console.log(displayText)
+						if (!menu.options[name])
+							return undefined
+					}
+
+					return menuDelegate
+				}
 
 				Component
 				{
@@ -93,8 +109,8 @@ Item
 							width	: menuItem.height - 5 * Theme.uiScale
 							color	: menuItem.color
 
-							anchors.left		: parent.left
-							anchors.leftMargin	: 3 * Theme.uiScale
+							anchors.left			: parent.left
+							anchors.leftMargin		: 3 * Theme.uiScale
 							anchors.verticalCenter	: parent.verticalCenter
 
 							Image
@@ -105,6 +121,7 @@ Item
 								fillMode	: Image.PreserveAspectFit
 							}
 						}
+
 						Text
 						{
 							id					: menuItemText
@@ -124,7 +141,7 @@ Item
 							id				: mouseArea
 							hoverEnabled	: true
 							anchors.fill	: parent
-							onClicked:		functionCall(index, menu.model)
+							onClicked:		functionCall(index)
 						}
 					}
 				}

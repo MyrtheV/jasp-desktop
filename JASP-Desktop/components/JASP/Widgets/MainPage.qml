@@ -1,3 +1,21 @@
+//
+// Copyright (C) 2013-2018 University of Amsterdam
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public
+// License along with this program.  If not, see
+// <http://www.gnu.org/licenses/>.
+//
+
 import QtQuick			2.11
 import QtWebEngine		1.7
 import QtWebChannel		1.0
@@ -126,19 +144,25 @@ OLD.SplitView
 				function analysisUnselected()					{ resultsJsInterface.analysisUnselected()					}
 				function analysisSelected(id)					{ resultsJsInterface.analysisSelected(id)					}
 				function analysisChangedDownstream(id, model)	{ resultsJsInterface.analysisChangedDownstream(id, model)	}
+
 				function showAnalysesMenu(options)
 				{
+					console.log(options)
+
+					options                 = JSON.parse(options);
+					customMenu.options      = options;
 					customMenu.functionCall = function menuItemClicked(index)
 					{
-						// resultsJsInterface.runJavaScript()
-						console.log("CLICKED")
+						resultsJsInterface.runJavaScript(customMenu.model.get(index).jsFunction);
 						customMenu.visible = false;
 					}
+					// var tester = {};
+					// tester['model'] = resultsMenuOptionsModel
+					// tester['type']  = "resultsMenu"
 
-					options = JSON.parse(options)
-					customMenu.showMenu(resultsView, resultsMenuOptionsModel, options['rXright'] + 10, options['rY']);
-
+					customMenu.showMenu(resultsView, "resultsMenu", resultsMenuOptionsModel, options['rXright'] + 10, options['rY']);
 				}
+
 				function updateUserData(id, key)				{ resultsJsInterface.updateUserData(id, key)				}
 				function analysisSaveImage(id, options)			{ resultsJsInterface.analysisSaveImage(id, options)			}
 				function analysisEditImage(id, options)			{ resultsJsInterface.analysisEditImage(id, options)			}

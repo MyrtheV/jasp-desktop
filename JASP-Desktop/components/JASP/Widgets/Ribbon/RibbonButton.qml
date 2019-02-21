@@ -93,10 +93,10 @@ Rectangle
 			onClicked		:
 			{
 
-				if(fileMenuModel.visible) fileMenuModel.visible = false
-				if(modulesMenu.opened)		modulesMenu.opened  = false
+				if (fileMenuModel.visible)	fileMenuModel.visible = false
+				if (modulesMenu.opened)		modulesMenu.opened  = false
 
-				if(ribbonButton.menu.rowCount() === 1)
+				if (ribbonButton.menu.rowCount() === 1)
 					ribbonModel.analysisClickedSignal(ribbonButton.menu.getFirstAnalysisEntry(), ribbonButton.ribbonTitle, ribbonButton.moduleName)
 				else
 				{
@@ -107,7 +107,7 @@ Rectangle
 						customMenu.visible = false;
 					}
 
-					customMenu.showMenu(ribbonButton, ribbonButton.menu, ribbonButton.width / 2, ribbonButton.height);
+					customMenu.showMenu(ribbonButton, "analysesMenu", ribbonButton.menu, ribbonButton.width / 2, ribbonButton.height);
 				}
 			}
 		}

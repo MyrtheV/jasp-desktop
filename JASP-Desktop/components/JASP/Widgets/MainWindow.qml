@@ -78,14 +78,15 @@ Window
 			id	: customMenu
 			z	: 5
 
-			function showMenu(item, model, x_offset, y_offset)
+			function showMenu(item, type, model, x_offset, y_offset)
 			{
-				var point = item.mapToItem(null, 0, 0);
+				customMenu.model	= model;
+				customMenu.type     = type
 
+				var point = item.mapToItem(null, 0, 0);
 				customMenu.x		= point.x + x_offset // + (item.width / 2);
 				customMenu.y		= point.y + y_offset // + item.height;
 
-				customMenu.model	= model;
 				customMenu.visible	= true;
 			}
 		}

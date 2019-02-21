@@ -24,6 +24,7 @@
 #include <QQmlWebChannel>
 #include <QAuthenticator>
 #include <QNetworkReply>
+
 #include "utilities/jsonutilities.h"
 #include "analysis/analysis.h"
 
